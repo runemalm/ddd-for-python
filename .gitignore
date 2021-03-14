@@ -1,0 +1,17 @@
+.DS_Store
+
+env
+
+venv/
+
+development/postgres/data
+
+build
+dist
+*.egg-info
+
+__pycache__/
+*.7z
+*.zip
+
+scratch
