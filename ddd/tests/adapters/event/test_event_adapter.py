@@ -1,6 +1,6 @@
 from unittest import skip
 
-from ddd.tests.base_test_case import BaseTestCase
+from ddd.tests.dummy_action_test_case import DummyActionTestCase
 
 from ddd.adapters.event.memory.memory_event_adapter import MemoryEventAdapter
 
@@ -11,7 +11,7 @@ from webshop.application.webshop_application_service import \
 from webshop.domain.commands import SendWelcomeEmailCommand
 
 
-class TestEventAdapter(BaseTestCase):
+class TestEventAdapter(DummyActionTestCase):
 
     async def asyncSetUp(self):
         await super().asyncSetUp()

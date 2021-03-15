@@ -1,4 +1,6 @@
-import arrow
+import os
+
+from dotenv import find_dotenv
 
 from ddd.tests.action_test_case import ActionTestCase
 
@@ -10,7 +12,10 @@ from ddd.utils.utils import read_config
 class DummyActionTestCase(ActionTestCase):
 
     def __init__(self, methodName='runTest'):
-        super().__init__(methodName=methodName)
+        super().__init__(
+            env_file_path=find_dotenv(filename=os.getenv('ENV_FILE')),
+            methodName=methodName,
+        )
 
     async def asyncSetUp(self):
         await super().asyncSetUp()

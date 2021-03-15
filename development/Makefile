@@ -40,7 +40,7 @@ postgres-deploy:: postgres-stop ##@postgres	deploy postgres
 		--network $(NETWORK) \
 		--log-opt max-size=$(LOGS_MAX_SIZE) \
 		--log-opt max-file=$(LOGS_MAX_FILE) \
-		-p "5433:5432" \
+		-p "5434:5432" \
 		-e "POSTGRES_PASSWORD=$(POSTGRES_PASSWORD)" \
 		-v $(POSTGRES_DATA_DIR):/var/lib/postgresql/data \
 		-v $(POSTGRES_DIR)/postgresql.conf:/etc/postgresql/postgresql.conf \
