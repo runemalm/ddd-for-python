@@ -2,7 +2,7 @@
 
 This is a framework for developing apps based on domain-driven design principles.
   
-The design is inspired by DDD (of course), Vaughn Vernon's reference implementation of DDD in Java and a little bit on Django.
+The design is inspired by Eric Evans theory on DDD, Vaughn Vernon's reference implementation in Java and on the Django framework.
   
 ### Theory:  
   
@@ -29,5 +29,6 @@ The documentation is coming shortly.
 
 | | | |  
 |-|-|-|  
-| __Date__ | __Version__ | __Changes__ |  
+| __Date__   | __Version__ | __Changes__                                                              |  
+| 2021-03-15 | 0.9.2       | Fix bug where env file wasn't loaded.                                    |
 | 2021-03-14 | 0.9.1       | Initial release.                                                         |

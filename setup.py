@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='ddd-for-python',
-    version='0.9.1',
+    version='0.9.2',
     author='David Runemalm, 2021',
     author_email='david.runemalm@gmail.com',
     description=

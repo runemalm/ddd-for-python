@@ -7,8 +7,11 @@ from ddd.utils.utils import load_env_file
 
 class BaseTestCase(IsolatedAsyncioTestCase):
 
-    def __init__(self, methodName='runTest'):
-        super(BaseTestCase, self).__init__(methodName=methodName)
+    def __init__(self, env_file_path, methodName='runTest'):
+        super().__init__(
+            methodName=methodName
+        )
+        self.env_file_path = env_file_path
 
     async def asyncSetUp(self):
         await super(BaseTestCase, self).asyncSetUp()
