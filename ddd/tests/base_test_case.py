@@ -1,20 +1,31 @@
+import os
+
 from unittest.async_case import IsolatedAsyncioTestCase
 
 from abc import abstractmethod
 
-from ddd.utils.utils import load_env_file
+from dotenv import find_dotenv, load_dotenv
 
 
 class BaseTestCase(IsolatedAsyncioTestCase):
 
-    def __init__(self, env_file_path, methodName='runTest'):
+    def __init__(self, env_file_path=None, methodName='runTest'):
         super().__init__(
             methodName=methodName
         )
+
+        if env_file_path in [None, ""]:
+            env_file_path = \
+                find_dotenv(
+                    filename=os.getenv('ENV_FILE'),
+                    raise_error_if_not_found=True,
+                    usecwd=True,
+                )
+
         self.env_file_path = env_file_path
 
     async def asyncSetUp(self):
-        await super(BaseTestCase, self).asyncSetUp()
+        await super().asyncSetUp()
 
         # Vars
         self.config = None
@@ -22,7 +33,9 @@ class BaseTestCase(IsolatedAsyncioTestCase):
         self.loop = None
 
         # Load env vars
-        load_env_file()
+        load_dotenv(
+            dotenv_path=self.env_file_path
+        )
 
         # Read config
         self.read_config()
