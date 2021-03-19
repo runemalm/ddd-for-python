@@ -9,7 +9,7 @@ from ddd.tests.base_test_case import BaseTestCase
 
 class ActionTestCase(BaseTestCase, metaclass=ABCMeta):
 
-    def __init__(self, env_file_path, methodName='runTest'):
+    def __init__(self, env_file_path=None, methodName='runTest'):
         super().__init__(
             env_file_path=env_file_path,
             methodName=methodName,

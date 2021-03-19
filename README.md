@@ -29,6 +29,8 @@ The documentation is coming shortly.
 
 | | | |  
 |-|-|-|  
-| __Date__   | __Version__ | __Changes__                                                              |  
-| 2021-03-15 | 0.9.2       | Fix bug where env file wasn't loaded.                                    |
-| 2021-03-14 | 0.9.1       | Initial release.                                                         |
+| __Date__   | __Version__ | __Changes__                                                                |
+| 2021-XX-XX | 0.9.X       | Search env file from cwd by default in tests, (when no path specified).    |
+|            |             | Make _login() method of Task class abstract.                               |
+| 2021-03-15 | 0.9.2       | Fix bug where env file wasn't loaded.                                      |
+| 2021-03-14 | 0.9.1       | Initial release.                                                           |

@@ -89,8 +89,9 @@ class Task(object, metaclass=ABCMeta):
 
         await self.scheduler_adapter.start()
 
+    @abstractmethod
     async def _login(self):
-        raise NotImplementedError()
+        pass
 
     # Helpers
 
