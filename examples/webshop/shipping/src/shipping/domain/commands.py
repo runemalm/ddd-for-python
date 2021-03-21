@@ -6,12 +6,12 @@ from ddd.domain.command import Command
 
 # Actions
 
-class SendWelcomeEmailCommand(Command):
+class SendTrackingEmailCommand(Command):
     def __init__(
         self,
-        customer_id,
+        shipment_id,
         token,
     ):
         super().__init__()
-        self.customer_id = customer_id
+        self.shipment_id = shipment_id
         self.token = token

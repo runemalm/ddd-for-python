@@ -1,12 +1,11 @@
-# Webshop Application (Example)
+# Webshop Application
 
 NOTE: This example is under development.
 
-## Change Log
+## Description
 
-This is the change log:
+This is the webshop sample application.
 
-| | | | | |
-|-|-|-|-|-|
-| __Date__   | __Version__ | __Changes__                                                                             | __Bug Fixes__                                                                                   | __Initials__ |
-| 2021-xx-xx | 1.0.0       | Inital version released.                                                                |                                                                                                 | DR           |
+It shows how the bounded contexts comprising this application can be implemented using ddd-for-python.
+
+So far, it contains a single "Shipping" context. More contexts will be added with time, like "Recommendation", "Catalog", "Customer", etc.
