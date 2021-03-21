@@ -1,5 +1,3 @@
-import arrow
-
 from ddd.utils.tasks.task import Task as BaseTask
 
 

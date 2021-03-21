@@ -1,11 +1,10 @@
 from ddd.adapters.event.event_listener import EventListener
 
-from webshop.domain.customer_account.customer_account_created import \
-    CustomerAccountCreated
-from webshop.domain.customer_account.customer_id import CustomerId
+from shipping.domain.shipment.shipment_id import ShipmentId
+from shipping.domain.shipment.shipment_created import ShipmentCreated
 
 
-class CustomerAccountCreatedListener(EventListener):
+class ShipmentCreatedListener(EventListener):
     def __init__(
         self,
         action,
@@ -13,7 +12,7 @@ class CustomerAccountCreatedListener(EventListener):
         command_creator
     ):
         super().__init__(
-            "CustomerAccountCreated",
+            "ShipmentCreated",
             action=action,
             service=service,
             command_creator=command_creator
@@ -23,13 +22,13 @@ class CustomerAccountCreatedListener(EventListener):
         super().read_event()
 
         # Customer ID
-        customer_id = \
+        shipment_id = \
             self.reader.entity_id_value(
-                'payload.customer_id', CustomerId
+                'payload.shipment_id', ShipmentId
             )
 
         # Event
-        return CustomerAccountCreated(
-            customer_id=customer_id,
+        return ShipmentCreated(
+            shipment_id=shipment_id,
             corr_ids=self.corr_ids,
         )

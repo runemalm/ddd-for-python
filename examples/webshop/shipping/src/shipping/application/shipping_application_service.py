@@ -2,25 +2,26 @@ from ddd.application.application_service import ApplicationService
 from ddd.application.action import action
 
 
-class WebshopApplicationService(ApplicationService):
+class ShippingApplicationService(ApplicationService):
     """
     This is the context's application service.
     """
     def __init__(
         self,
+        customer_repository,
         db_service,
         domain_adapter,
         domain_publisher,
         event_repository,
         interchange_adapter,
         interchange_publisher,
-        job_service,
         job_adapter,
+        job_service,
         log_service,
         scheduler_adapter,
-        customer_repository,
+        shipment_repository,
         max_concurrent_actions,
-        loop=None,
+        loop,
     ):
         """
         Initialize the application service.
@@ -32,18 +33,19 @@ class WebshopApplicationService(ApplicationService):
             event_repository=event_repository,
             interchange_adapter=interchange_adapter,
             interchange_publisher=interchange_publisher,
-            job_service=job_service,
             job_adapter=job_adapter,
+            job_service=job_service,
             log_service=log_service,
             scheduler_adapter=scheduler_adapter,
             max_concurrent_actions=max_concurrent_actions,
             loop=loop,
         )
 
-        # Dependencies
+        # References
         self.customer_repository = customer_repository
+        self.shipment_repository = shipment_repository
 
-        # ..categorize
+        # Classify deps
         self.domain_services.extend([
 
         ])
@@ -54,14 +56,15 @@ class WebshopApplicationService(ApplicationService):
 
         self.secondary_adapters.extend([
             customer_repository,
+            shipment_repository,
         ])
 
     # Actions
 
     @action
-    async def send_welcome_email(self, command, corr_ids=None):
+    async def send_tracking_email(self, command, corr_ids=None):
         """
-        Send welcome email.
+        Send tracking email to recipient.
         """
         corr_ids = corr_ids if corr_ids is not None else []
 

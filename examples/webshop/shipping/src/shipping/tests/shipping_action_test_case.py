@@ -1,14 +1,11 @@
-import arrow
-
 from ddd.tests.action_test_case import ActionTestCase
 
-from webshop.application.iam_application_service import IamApplicationService
-from webshop.domain.commands import CreateUserCommand
-from webshop.utils.dep_mgr import DependencyManager
-from webshop.utils.utils import read_config
+from shipping.application.shipping_application_service import \
+    ShippingApplicationService
+from shipping.utils.dep_mgr import DependencyManager
 
 
-class WebshopActionTestCase(ActionTestCase):
+class ShippingActionTestCase(ActionTestCase):
 
     def __init__(self, methodName='runTest'):
         super().__init__(methodName=methodName)
@@ -35,7 +32,9 @@ class WebshopActionTestCase(ActionTestCase):
     def get_service(self):
         if not self.service:
             self.service = \
-                WebshopApplicationService(
+                ShippingApplicationService(
+                    customer_repository=
+                    self.deps.get_customer_repository(),
                     db_service=self.deps.get_db_service(),
                     domain_adapter=self.deps.get_domain_adapter(),
                     domain_publisher=self.deps.get_domain_publisher(),
@@ -43,12 +42,12 @@ class WebshopActionTestCase(ActionTestCase):
                     interchange_adapter=self.deps.get_interchange_adapter(),
                     interchange_publisher=
                     self.deps.get_interchange_publisher(),
-                    job_service=self.deps.get_job_service(),
                     job_adapter=self.deps.get_job_adapter(),
+                    job_service=self.deps.get_job_service(),
                     log_service=self.deps.get_log_service(),
                     scheduler_adapter=self.deps.get_scheduler_adapter(),
-                    customer_repository=
-                    self.deps.get_customer_repository(),
+                    shipment_repository=
+                    self.deps.get_shipment_repository(),
                     max_concurrent_actions=self.config.max_concurrent_actions,
                 )
 
