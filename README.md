@@ -14,9 +14,9 @@ The goal of this project is to provide a complete framework for implementing DDD
 
 Star/follow the project to receive notification when version 1.0.0 is released, which will be soon.
 
-Feel free to try the framework out already now though, and I'd be happy to receive your feedback.
+Feel free to try the framework out already now though, I'd love to get your feedback.
 
-Documentation is also on the way for version 1.0.0. Full test coverage as well.
+Documentation is also on the way in version 1.0.0, as well as full test coverage.
 
 ### Theory: 
   
@@ -34,8 +34,16 @@ $ pip install ddd-for-python
 ### Example:
 
 ```bash
-# This is the "main.py" file, 
-# that runs in the bounded context docker container.
+# This is the "main.py" file that
+# starts the bounded context in a container.
+
+from ddd.infrastructure.config import Config
+from ddd.infrastructure.container import Container
+
+from shipping.utils.dep_mgr import DependencyManager
+from shipping.application.shipping_application_service import \
+    ShippingApplicationService
+
 
 if __name__ == "__main__":
     """
@@ -87,7 +95,7 @@ if __name__ == "__main__":
     loop.close()
 ```
 
-For the full shipping context, see code under "examples/webshop/shipping".
+For the full code, see: "examples/webshop/shipping".
   
 ### Documentation:  
   
