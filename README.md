@@ -19,7 +19,9 @@ $ pip install ddd-for-python
   
 ### Examples:  
   
-The examples are coming shortly.  
+The examples are coming shortly.
+
+The "shipping" context code can be found under the "examples" folder.
   
 ### Documentation:  
   
