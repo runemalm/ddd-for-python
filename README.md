@@ -33,7 +33,7 @@ $ pip install ddd-for-python
   
 ### Example:
 
-```bash
+```python
 # This is the "main.py" file that
 # starts the bounded context in a container.
 
