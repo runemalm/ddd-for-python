@@ -20,8 +20,8 @@ class ApplicationService(object):
         job_adapter,
         log_service,
         scheduler_adapter,
-        max_concurrent_actions=40,
-        loop=None,
+        max_concurrent_actions,
+        loop,
     ):
         super().__init__()
 
@@ -55,8 +55,8 @@ class ApplicationService(object):
         ]
 
         # Vars
-        self.loop = loop if loop else asyncio.get_event_loop()
         self.max_concurrent_actions = max_concurrent_actions
+        self.loop = loop
 
         # Actions
         self._create_action_sem()

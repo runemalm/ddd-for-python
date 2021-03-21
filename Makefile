@@ -39,6 +39,7 @@ build: ## build the python package
 clean: ## clean the build
 	python setup.py clean
 	rm -rf build dist ddd_for_python.egg-info
+	find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 
 .PHONY: upload-test
 upload-test: ## upload package to pypitest repository
