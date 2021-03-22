@@ -15,9 +15,21 @@ class Config(object):
     We use 'addict' to be able to use dot-notation
     for referencing dict values.
     """
+    TRUTHY = ["True", "true", "1", 1, True]
+
     def __init__(self, env_file_path=None):
         super().__init__()
 
+        self._declare_settings()
+        self._find_env_file(env_file_path)
+        self._load_env_file()
+        self._read_config()
+        self._get_loop()
+
+    def _declare_settings(self):
+        """
+        Declare all settings as 'None'.
+        """
         self.env = None
         self.debug = None
         self.max_concurrent_actions = None
@@ -94,36 +106,6 @@ class Config(object):
             }),
         })
 
-        self._truthy = ["True", "true", "1", 1, True]
-
-        # Find env file
-        self._find_env_file(env_file_path)
-
-        # Load env file
-        self._load_env_file()
-
-        # Read config
-        self._read_config()
-
-        # Get loop
-        self._get_loop()
-
-    def _get_loop(self):
-        """
-        Create the loop,
-        add it to asyncio and this config.
-        """
-        loop = None
-
-        if self.loop.type == "uvloop":
-            loop = uvloop.new_event_loop()
-        else:
-            loop = asyncio.get_event_loop()
-
-        asyncio.set_event_loop(loop)
-
-        self.loop.instance = loop
-
     def _find_env_file(self, env_file_path):
         """
         Tries to find the env file path.
@@ -165,7 +147,7 @@ class Config(object):
 
         self.loop.type = os.getenv("LOOP_TYPE")
 
-        self.http.debug = os.getenv("HTTP_DEBUG") in self._truthy
+        self.http.debug = os.getenv("HTTP_DEBUG") in self.TRUTHY
         self.http.port = os.getenv("HTTP_PORT")
 
         self.database.type = os.getenv("DATABASE_TYPE")
@@ -201,20 +183,36 @@ class Config(object):
 
         self.slack.token = os.getenv("SLACK_TOKEN")
 
-        self.log.enabled = os.getenv("LOG_ENABLED") in self._truthy,
+        self.log.enabled = os.getenv("LOG_ENABLED") in self.TRUTHY
 
         self.log.slack.enabled = \
-            os.getenv("LOG_SLACK_ENABLED") in self._truthy,
+            os.getenv("LOG_SLACK_ENABLED") in self.TRUTHY
         self.log.slack.errors.channel = \
-            os.getenv("LOG_SLACK_CHANNEL_ERRORS"),
+            os.getenv("LOG_SLACK_CHANNEL_ERRORS")
 
         self.log.kibana.enabled = \
-            os.getenv("LOG_KIBANA_ENABLED") in self._truthy,
-        self.log.kibana.url = os.getenv("LOG_KIBANA_URL"),
-        self.log.kibana.username = os.getenv("LOG_KIBANA_USERNAME"),
-        self.log.kibana.password = os.getenv("LOG_KIBANA_PASSWORD"),
+            os.getenv("LOG_KIBANA_ENABLED") in self.TRUTHY
+        self.log.kibana.url = os.getenv("LOG_KIBANA_URL")
+        self.log.kibana.username = os.getenv("LOG_KIBANA_USERNAME")
+        self.log.kibana.password = os.getenv("LOG_KIBANA_PASSWORD")
 
         self.base_url = os.getenv('BASE_URL', 'empty-base-url')
 
         self.tasks.runner.username = os.getenv('TASK_RUNNER_USERNAME')
         self.tasks.runner.password = os.getenv('TASK_RUNNER_PASSWORD')
+
+    def _get_loop(self):
+        """
+        Create the loop,
+        add it to asyncio and this config.
+        """
+        loop = None
+
+        if self.loop.type == "uvloop":
+            loop = uvloop.new_event_loop()
+        else:
+            loop = asyncio.get_event_loop()
+
+        asyncio.set_event_loop(loop)
+
+        self.loop.instance = loop
