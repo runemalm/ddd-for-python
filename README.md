@@ -24,6 +24,10 @@ If you are new to DDD, the following sources are recommended:
   
 - [Domain-Driven Design: Tackling Complexity in the Heart of Software - Eric Evans](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)  
 - [Implementing Domain-Driven Design - Vaughn Vernon](https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577)  
+
+### Supported Python Versions:
+
+The package has been tested with python 3.8.5. It should work with version >= 3.8.0 but not guaranteed.
   
 ### Installation:
   
@@ -48,7 +52,7 @@ from shipping.application.shipping_application_service import \
 if __name__ == "__main__":
     """
     This is the container entry point.    
-    Creates the app and runs it in the container.
+    Creates the application service and runs it in the container.
     """
     
     # Config

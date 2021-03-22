@@ -1,4 +1,4 @@
-from ddd.infrastructure.config import Config
+from ddd.application.config import Config
 from ddd.infrastructure.container import Container
 
 from shipping.utils.dep_mgr import DependencyManager
