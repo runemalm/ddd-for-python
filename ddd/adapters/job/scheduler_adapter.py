@@ -73,7 +73,15 @@ class SchedulerAdapter(object, metaclass=ABCMeta):
         pass
 
     @abstractmethod
+    async def get_all_jobs(self):
+        pass
+
+    @abstractmethod
     async def get_job(self, job_id):
+        pass
+
+    @abstractmethod
+    async def get_job_count(self):
         pass
 
     @abstractmethod

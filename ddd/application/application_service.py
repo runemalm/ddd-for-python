@@ -100,7 +100,7 @@ class ApplicationService(object):
         await self._stop_domain_services()
         await self._stop_infrastructure_services()
 
-        self.log_service.info("Stopping application service.")
+        self.log_service.info("Application service stopped.")
 
     async def _start_domain_publisher(self):
         """
