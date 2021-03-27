@@ -1,22 +1,16 @@
 ## DDD for Python  
 
 This is a framework for developing apps based on domain-driven design principles.
- 
-The design is inspired by Vaughn Vernon's reference implementation in Java.
-
-Also, of course, the DDD principles as defined by Eric Evans.
-
-You can probably find a little bit design borrowed from django in there as well.
+ The design is inspired by Vaughn Vernon's reference implementation of Eric Evans DDD concept in Java.
 
 ### Purpose:
 
 The goal of this project is to provide a complete framework for implementing DDD bounded contexts in Python.
+Star/follow the project to receive notification when version 1.0.0 is released.
 
-Star/follow the project to receive notification when version 1.0.0 is released, which will be soon.
+Full documentation will be available in version 1.0.0. There's a code example for a 'shipping' context in the 'examples' folder you can look at meanwhile, if you want to try it out already today.
 
-Feel free to try the framework out already now though, I'd love to get your feedback.
-
-Documentation is also on the way in version 1.0.0, as well as full test coverage.
+I would love to get your feedback!
 
 ### Theory: 
   
@@ -27,7 +21,8 @@ If you are new to DDD, the following sources are recommended:
 
 ### Supported Python Versions:
 
-The package has been tested with python 3.8.5. It should work with version >= 3.8.0 but not guaranteed.
+- Tested with python 3.8.5.
+- Should work with any version >= 3.8.0 (not tested).
   
 ### Installation:
   
@@ -101,17 +96,22 @@ if __name__ == "__main__":
 
 For the full code, see: "examples/webshop/shipping".
   
-### Documentation:  
+### Documentation:
   
 The documentation is coming shortly.
   
-### Change Log:  
+### Release Notes:
 
-| | | |  
-|-|-|-|  
-| __Date__   | __Version__ | __Changes__                                                                |
-| 2021-XX-XX | 0.9.X       | Search env file from cwd by default in tests, (when no path specified).    |
-|            |             | Make _login() method of Task class abstract.                               |
-|            |             | Refactor config concept (create 'Config' class).                           |
-| 2021-03-15 | 0.9.2       | Fix bug where env file wasn't loaded.                                      |
-| 2021-03-14 | 0.9.1       | Initial release.                                                           |
+**0.9.3** - 2021-03-27
+- Search env file from cwd by default in tests, (when no path specified).
+- Refactor Task class to make it more simple.
+- Refactor the configuration solution by adding a Config class.
+- Add example code for 'shipping' context of a webshop application.
+- Add get_all_jobs() and get_job_count() to scheduler adapter & service.
+- Add missing call to _migrate() in a couple of Repository class functions.
+
+**0.9.2** - 2021-03-15
+- Fix a bug where env file wasn't loaded in certain circumstances.
+
+**0.9.1** - 2021-03-14
+- First release.
