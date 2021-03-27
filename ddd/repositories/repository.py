@@ -48,13 +48,18 @@ class Repository(object):
         aggregate = None
 
         if record:
+            record = self._migrate([record], self.aggregate_cls)[0]
             aggregate = self.aggregate_from_record(record)
 
         return aggregate
 
     async def get_all(self):
         records = await self._get_all_records()
+
+        records = self._migrate(records, self.aggregate_cls)
+
         aggregates = [self.aggregate_from_record(record) for record in records]
+
         return aggregates
 
     async def get_all_not_on_latest_version(self):

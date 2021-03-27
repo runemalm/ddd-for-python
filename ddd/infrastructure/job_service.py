@@ -117,6 +117,12 @@ class JobService(InfrastructureService, metaclass=ABCMeta):
             replace_existing=replace_existing,
         )
 
+    async def get_all_jobs(self):
+        return await self.scheduler_adapter.get_all_jobs()
+
+    async def get_job_count(self):
+        return await self.scheduler_adapter.get_job_count()
+
     async def remove_job(self, job_id, raises=False):
         await self.scheduler_adapter.remove_job(
             job_id=job_id,
