@@ -16,11 +16,15 @@ class Task(object, metaclass=ABCMeta):
         self.args_str = args_str
         self.makes_requests = makes_requests
 
+        self.log_service = deps_mgr.get_log_service()
+
         self._create_args_parser()
         self.add_args(parser=self.parser)
         self._parse_args()
 
         self.client = None
+        self.token = None
+        self.pool = None
 
     # Interface
 
@@ -66,6 +70,9 @@ class Task(object, metaclass=ABCMeta):
         in your subclass before run() is called,
         (for example initiate state variables).
         """
+        # Adapters
+        await self._create_secondary_adapters()
+
         # Client
         if self.makes_requests:
             self.client = aiosonic.HTTPClient()
@@ -73,6 +80,24 @@ class Task(object, metaclass=ABCMeta):
 
     # HTTP
 
-    @abstractmethod
+    async def _create_secondary_adapters(self):
+        """
+        Create secondary adapters.
+        """
+        # Scheduler adapter
+        self.scheduler_adapter = self.deps_mgr.get_scheduler_adapter()
+
+        await self.scheduler_adapter.start()
+
     async def _login(self):
-        pass
+        raise NotImplementedError()
+
+    # Helpers
+
+    def _non_empty_string(self, string):
+        """
+        Custom type for argparse
+        """
+        if not string:
+            raise ValueError("Must not be empty string")
+        return string

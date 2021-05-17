@@ -49,7 +49,7 @@ class Task(BaseTask):
                 f"* Migrated '{data['count']}' {name.lower()}s"
             )
 
-        self.deps_mgr.get_log_service().info(
+        self.log_service.info(
             "---------------------------------------\nRESULT:\n\n"
             "{}\n"
             "---------------------------------------".
@@ -130,6 +130,3 @@ class Task(BaseTask):
         return ''.join(
             ['_' + c.lower() if c.isupper() else c for c in string]
         ).lstrip('_')
-
-    async def _login(self):
-        pass

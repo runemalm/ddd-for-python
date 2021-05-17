@@ -1,17 +1,17 @@
 from unittest import skip
 
-from ddd.tests.dummy_action_test_case import DummyActionTestCase
+from ddd.tests.base_test_case import BaseTestCase
 
 from ddd.adapters.event.memory.memory_event_adapter import MemoryEventAdapter
 
-from shipping.adapters.listeners.domain.shipment_created_listener \
-    import ShipmentCreatedListener
-from shipping.application.shipping_application_service import \
-    ShippingApplicationService
-from shipping.domain.commands import SendTrackingEmailCommand
+from webshop.adapters.listeners.domain.customer_account_created_listener \
+    import CustomerAccountCreatedListener
+from webshop.application.webshop_application_service import \
+    WebshopApplicationService
+from webshop.domain.commands import SendWelcomeEmailCommand
 
 
-class TestEventAdapter(DummyActionTestCase):
+class TestEventAdapter(BaseTestCase):
 
     async def asyncSetUp(self):
         await super().asyncSetUp()
@@ -23,12 +23,12 @@ class TestEventAdapter(DummyActionTestCase):
     ):
         # Setup
         listener = \
-            ShipmentCreatedListener(
-                action="send_tracking_email",
+            CustomerAccountCreatedListener(
+                action="send_welcome_email",
                 service=None,
                 command_creator=lambda event:
-                SendTrackingEmailCommand(
-                    shipment_id=event.shipment_id,
+                SendWelcomeEmailCommand(
+                    customer_id=event.customer_id,
                     token=None,
                 )
             )
@@ -37,21 +37,19 @@ class TestEventAdapter(DummyActionTestCase):
             listener
         ])
 
-        service = ShippingApplicationService(
-            customer_repository=None,
+        service = WebshopApplicationService(
             db_service=None,
             domain_adapter=None,
             domain_publisher=None,
             event_repository=None,
             interchange_adapter=None,
             interchange_publisher=None,
-            job_adapter=None,
             job_service=None,
+            job_adapter=None,
             log_service=None,
             scheduler_adapter=None,
-            shipment_repository=None,
+            customer_repository=None,
             max_concurrent_actions=10,
-            loop=None,
         )
 
         # Exercise

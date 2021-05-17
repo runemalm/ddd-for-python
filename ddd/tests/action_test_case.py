@@ -1,6 +1,8 @@
 import asyncio
 import uvloop
 
+from unittest.mock import AsyncMock
+
 from abc import ABCMeta, abstractmethod
 
 from ddd.utils.dep_mgr import DependencyManager
@@ -9,11 +11,8 @@ from ddd.tests.base_test_case import BaseTestCase
 
 class ActionTestCase(BaseTestCase, metaclass=ABCMeta):
 
-    def __init__(self, env_file_path=None, methodName='runTest'):
-        super().__init__(
-            env_file_path=env_file_path,
-            methodName=methodName,
-        )
+    def __init__(self, methodName='runTest'):
+        super().__init__(methodName=methodName)
 
         # Configure
         self.maxDiff = None
