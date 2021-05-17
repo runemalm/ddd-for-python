@@ -48,18 +48,13 @@ class Repository(object):
         aggregate = None
 
         if record:
-            record = self._migrate([record], self.aggregate_cls)[0]
             aggregate = self.aggregate_from_record(record)
 
         return aggregate
 
     async def get_all(self):
         records = await self._get_all_records()
-
-        records = self._migrate(records, self.aggregate_cls)
-
         aggregates = [self.aggregate_from_record(record) for record in records]
-
         return aggregates
 
     async def get_all_not_on_latest_version(self):
@@ -124,48 +119,6 @@ class Repository(object):
     def now_iso8601(self, tz="Europe/Stockholm"):
         string = self.now(tz).format("YYYY-MM-DDTHH:mm:ss.SSSSSSZZ")
         return string
-
-    # Filter
-
-    def _filter_by_property(self, records, property, values):
-        return \
-            self._filter_by_properties(
-                records=records,
-                properties={
-                    property: values,
-                },
-            )
-
-    def _filter_by_properties(self, records, properties):
-        filtered = []
-
-        for record in records:
-            passes_all = True
-
-            for name, values in properties.items():
-                if name not in record['data']:
-                    raise Exception(
-                        f"Couldn't filter records by property values in "
-                        f"repository class. The record has no property "
-                        f"named '{name}'."
-                    )
-
-                no_filter = len(values) == 0
-                is_list = type(record['data'][name]) is list
-
-                if is_list:
-                    passes = any(v in record['data'][name] for v in values)
-                else:
-                    passes = record['data'][name] in values
-
-                if not no_filter and not passes:
-                    passes_all = False
-                    break
-
-            if passes_all:
-                filtered.append(record)
-
-        return filtered
 
     # Serialization / Deserialization
 

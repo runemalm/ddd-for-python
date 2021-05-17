@@ -14,7 +14,6 @@ class Task(BaseTask):
             deps_mgr=deps_mgr,
             args_str=args_str,
             makes_requests=False,
-            uses_service=False,
         )
 
     def add_args(self, parser):
@@ -50,7 +49,7 @@ class Task(BaseTask):
                 f"* Migrated '{data['count']}' {name.lower()}s"
             )
 
-        self.deps_mgr.get_log_service().info(
+        self.log_service.info(
             "---------------------------------------\nRESULT:\n\n"
             "{}\n"
             "---------------------------------------".
@@ -131,14 +130,3 @@ class Task(BaseTask):
         return ''.join(
             ['_' + c.lower() if c.isupper() else c for c in string]
         ).lstrip('_')
-
-    async def _login(self):
-        pass
-
-    # Service
-
-    async def _create_service(self):
-        pass
-
-    async def _register_service(self):
-        pass

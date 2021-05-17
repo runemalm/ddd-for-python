@@ -19,9 +19,6 @@ from ddd.domain.entity import Entity
 
 logger = logging.getLogger(__file__)
 
-# Variables
-
-TRUTHY = ["True", "true", "1", 1, True]
 
 # Functions
 
@@ -32,6 +29,8 @@ def read_config():
     Returns:
         dict - the config dict
     """
+    truthy = ["True", "true", "1", 1, True]
+
     config = Dict({
         'env': os.getenv("ENV"),
         'debug': os.getenv("DEBUG"),
@@ -39,7 +38,7 @@ def read_config():
             int(os.getenv("MAX_CONCURRENT_ACTIONS", "10")),
         'top_level_package_name': os.getenv("TOP_LEVEL_PACKAGE_NAME"),
         'http': {
-            'debug': os.getenv("HTTP_DEBUG") in TRUTHY,
+            'debug': os.getenv("HTTP_DEBUG") in truthy,
             'port': os.getenv("HTTP_PORT"),
         },
         'database': {
@@ -87,13 +86,13 @@ def read_config():
         'log': {
             'enabled': True,
             'slack': {
-                'enabled': os.getenv("LOG_SLACK_ENABLED") in TRUTHY,
+                'enabled': os.getenv("LOG_SLACK_ENABLED") in truthy,
                 'errors': {
                     'channel': os.getenv("LOG_SLACK_CHANNEL_ERRORS"),
                 }
             },
             'kibana': {
-                'enabled': os.getenv("LOG_KIBANA_ENABLED") in TRUTHY,
+                'enabled': os.getenv("LOG_KIBANA_ENABLED") in truthy,
                 'url': os.getenv("LOG_KIBANA_URL"),
                 'username': os.getenv("LOG_KIBANA_USERNAME"),
                 'password': os.getenv("LOG_KIBANA_PASSWORD"),
@@ -245,114 +244,6 @@ def dates_intersection(
         return None
 
     return [start, end]
-
-# Lists
-
-def first_or_none(list_):
-    return list_[0] if len(list_) > 0 else None
-
-# Logic
-
-def is_true(value):
-    return value in TRUTHY
-
-# Parameters in http adapter
-
-def read_string_from_query(request, param):
-    return request.args.get(param)
-
-def read_string_from_body(request, param):
-    return request.json.get(param)
-
-def read_integer_from_query(request, param):
-    return int(request.args.get(param, 0))
-
-def read_integer_from_body(request, param):
-    return int(request.json.get(param, 0))
-
-def read_boolean_from_query(request, param):
-    value = request.args.get(param, None)
-    if value is not None:
-        return value in TRUTHY
-    return None
-
-def read_boolean_from_body(request, param):
-    value = request.json.get(param, None)
-    if value is not None:
-        return value in TRUTHY
-    return None
-
-def read_list_from_query(request, param):
-    """
-    Read argument from request query as list.
-    """
-    if f"{param}[]" in request.args:
-        value = request.args.getlist(f"{param}[]", [])
-    else:
-        value = request.args.getlist(param, [])
-    return value
-
-def read_list_from_body(request, param):
-    """
-    Read argument from request body as list.
-    """
-    if f"{param}[]" in request.json:
-        value = request.json.get(f"{param}[]", [])
-    else:
-        value = request.json.get(param, [])
-    return value
-
-def read_entity_id_from_query(request, param, entity_class):
-    """
-    Read argument from query as entity ID.
-    """
-    value = request.args.get(param)
-
-    if value:
-        value = entity_class(value)
-
-    return value
-
-def read_entity_id_from_body(request, param, entity_class):
-    """
-    Read argument from body json as entity ID.
-    """
-    value = request.json.get(param)
-
-    if value:
-        value = entity_class(value)
-
-    return value
-
-def read_entity_ids_from_query(request, param, entity_class):
-    """
-    Read argument from query as list of entity IDs.
-    """
-    values = []
-
-    if f"{param}[]" in request.args:
-        values = request.args.getlist(f"{param}[]", [])
-    else:
-        values = request.args.getlist(param, [])
-
-    values = [entity_class(v) for v in values]
-
-    return values
-
-def read_entity_ids_from_body(request, param, entity_class):
-    """
-    Read argument from body json as list of entity IDs.
-    """
-    values = []
-
-    if f"{param}[]" in request.json:
-        values = request.json.get(f"{param}[]", [])
-    else:
-        values = request.json.get(param, [])
-
-    values = [entity_class(v) for v in values]
-
-    return values
 
 # Classes
 

@@ -113,15 +113,6 @@ class MemorySchedulerAdapter(SchedulerAdapter):
             'misfire_grace_time': misfire_grace_time,
         }
 
-    async def get_all_jobs(self):
-        jobs = []
-
-        for type_, js in self.jobs.items():
-            for job_id, job in js.items():
-                jobs.append(job)
-
-        return jobs
-
     async def get_job(self, job_id):
         for i, j in self.jobs['cron'].items():
             if i == job_id:
@@ -134,12 +125,6 @@ class MemorySchedulerAdapter(SchedulerAdapter):
         for i, j in self.jobs['interval'].items():
             if i == job_id:
                 return j
-
-    async def get_job_count(self):
-        return \
-            len(self.jobs['cron']) + \
-            len(self.jobs['date']) + \
-            len(self.jobs['interval'])
 
     async def remove_job(self, job_id, raises=False):
         self.jobs['cron'] = {

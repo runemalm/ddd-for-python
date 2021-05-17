@@ -6,11 +6,11 @@ class Container(object):
     """
     A container for hosting an application service.
     """
-    def __init__(self, service, log_service, loop=None):
+    def __init__(self, app_service, log_service, loop=None):
         super().__init__()
 
         # Deps
-        self.service = service
+        self.app_service = app_service
         self.log_service = log_service
         self.loop = loop if loop else asyncio.get_event_loop()
 
@@ -57,7 +57,7 @@ class Container(object):
         """
         Run the app, (called on container start).
         """
-        await self.service.start()
+        await self.app_service.start()
         await self.wait_for_stop()
         await self.stop()
 
@@ -70,4 +70,4 @@ class Container(object):
 
     async def stop(self):
         self.log_service.info("Stopping app..")
-        await self.service.stop()
+        await self.app_service.stop()

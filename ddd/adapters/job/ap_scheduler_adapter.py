@@ -134,14 +134,8 @@ class ApSchedulerAdapter(SchedulerAdapter):
     ):
         raise NotImplementedError()
 
-    async def get_all_jobs(self):
-        return self.scheduler.get_jobs()
-
     async def get_job(self, job_id):
         return self.scheduler.get_job(job_id)
-
-    async def get_job_count(self):
-        return len(self.scheduler.get_jobs())
 
     async def remove_job(self, job_id, raises=False):
         try:
