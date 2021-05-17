@@ -114,6 +114,11 @@ The documentation is coming shortly.
   
 ### Release Notes:
 
+**0.9.4** - 2021-05-17
+- Add 'context' to log service's log messages.
+- Move record filtering methods to base repository class.
+- Add 'uses_service' to Task class. Deprecate 'makes_requests'.
+
 **0.9.3** - 2021-03-27
 - Search env file from cwd by default in tests, (when no path specified).
 - Refactor Task class to make it more simple.
