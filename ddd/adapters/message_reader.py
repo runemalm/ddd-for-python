@@ -48,6 +48,16 @@ class MessageReader(object):
         return str(value)
 
     def entity_id_value(self, keys, class_, default=None):
+        return self.instance_or_none(keys, class_, default)
+
+    def value_object_value(self, keys, class_, default=None):
+        return self.instance_or_none(keys, class_, default)
+
+    def instance_or_none(self, keys, class_, default=None):
+        """
+        If value exist in dict at key path, instantiate it as 'class_',
+        else return None.
+        """
         value = self.get_value(self.message, path=keys, default=default)
         if isinstance(value, str):
             return class_(value)
