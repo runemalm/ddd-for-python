@@ -20,6 +20,7 @@ class LogService(InfrastructureService):
         self,
         kibana_config,
         slack_config,
+        context="unknown",
         enabled=True,
     ):
         super().__init__(log_service="dummy")
@@ -27,6 +28,7 @@ class LogService(InfrastructureService):
         self.kibana_config = Dict(kibana_config)
         self.slack_config = Dict(slack_config)
         self.enabled = enabled
+        self.context = context
 
         # Create the logger
         self._set_modules_logger_levels()
@@ -62,6 +64,7 @@ class LogService(InfrastructureService):
                 message=message,
                 extra=extra,
                 exc_info=exc_info,
+                context=self.context,
             )
 
     def warning(self, message, extra=None, exc_info=False):
@@ -75,6 +78,7 @@ class LogService(InfrastructureService):
                 message=message,
                 extra=extra,
                 exc_info=exc_info,
+                context=self.context,
             )
 
     def error(self, message, extra=None, exc_info=False):
@@ -88,6 +92,7 @@ class LogService(InfrastructureService):
                 message=message,
                 extra=extra,
                 exc_info=exc_info,
+                context=self.context,
             )
 
     def debug(self, message, extra=None, exc_info=False):
@@ -101,6 +106,7 @@ class LogService(InfrastructureService):
                 message=message,
                 extra=extra,
                 exc_info=exc_info,
+                context=self.context,
             )
 
     async def log_request(self, message, method, url, params):
@@ -167,6 +173,7 @@ class LogService(InfrastructureService):
         message,
         extra,
         exc_info,
+        context,
     ):
         """
         Helper to do the actual logging.
@@ -177,10 +184,13 @@ class LogService(InfrastructureService):
         Raises:
             Exception if logging fails.
         """
-        e = None
+        e = {
+            'context': context,
+            'extra': {},
+        }
 
         if extra is not None and extra != {}:
-            e = {'extra': extra}
+            e['extra'] = extra
 
         getattr(logger, level)(
             message,
@@ -189,37 +199,27 @@ class LogService(InfrastructureService):
         )
 
     def _create_logger(self):
-
-        # TODO: Merge this into logging_config below:
-        logging.basicConfig(
-            format=
-            "[%(asctime)s] [%(levelname)8s] --- "
-            "%(message)s (%(filename)s:%(lineno)s)",
-            stream=sys.stdout,
-            level=logging.DEBUG
-        )
-
         logging_config = dict(
             disable_existing_loggers=False,
             version=1,
             formatters={
-                'f': {
+                'my_formatter': {
                     'format': (
-                        "%(asctime)s %(name)-12s %(levelname)-8s "
-                        "%(message)s"
+                        "[%(asctime)s] [%(context)9s] [%(levelname)8s] --- "
+                        "%(message)s (%(filename)s:%(lineno)s)"
                     )
                 }
             },
             handlers={
                 'console': {
                     'class': "logging.StreamHandler",
-                    'formatter': None,
+                    'formatter': "my_formatter",
                     'level': logging.INFO,
                     'stream': "ext://sys.stdout"
                 },
                 'kibana': {
                     'class': "cmreslogging.handlers.CMRESHandler",
-                    'formatter': None,
+                    'formatter': "my_formatter",
                     'level': logging.DEBUG,
                     'hosts': f"{self.kibana_config.url}",
                     'auth_type': CMRESHandler.AuthType.BASIC_AUTH,
