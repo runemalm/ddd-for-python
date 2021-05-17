@@ -125,6 +125,48 @@ class Repository(object):
         string = self.now(tz).format("YYYY-MM-DDTHH:mm:ss.SSSSSSZZ")
         return string
 
+    # Filter
+
+    def _filter_by_property(self, records, property, values):
+        return \
+            self._filter_by_properties(
+                records=records,
+                properties={
+                    property: values,
+                },
+            )
+
+    def _filter_by_properties(self, records, properties):
+        filtered = []
+
+        for record in records:
+            passes_all = True
+
+            for name, values in properties.items():
+                if name not in record['data']:
+                    raise Exception(
+                        f"Couldn't filter records by property values in "
+                        f"repository class. The record has no property "
+                        f"named '{name}'."
+                    )
+
+                no_filter = len(values) == 0
+                is_list = type(record['data'][name]) is list
+
+                if is_list:
+                    passes = any(v in record['data'][name] for v in values)
+                else:
+                    passes = record['data'][name] in values
+
+                if not no_filter and not passes:
+                    passes_all = False
+                    break
+
+            if passes_all:
+                filtered.append(record)
+
+        return filtered
+
     # Serialization / Deserialization
 
     def aggregate_from_record(self, record):

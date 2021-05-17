@@ -162,31 +162,6 @@ class PostgresRepository(Repository, metaclass=ABCMeta):
                 data,
             )
 
-    def _filter_by_property(self, records, property, values):
-        return \
-            self._filter_by_properties(
-                records=records,
-                properties={
-                    property: values,
-                },
-            )
-
-    def _filter_by_properties(self, records, properties):
-        filtered = []
-
-        for record in records:
-            for name, values in properties.items():
-                if name not in record['data']:
-                    raise Exception(
-                        f"Couldn't filter records by property values in "
-                        f"postgres adapter. The record has no property "
-                        f"named '{name}'."
-                    )
-                if record['data'][name] in values:
-                    filtered.append(record)
-
-        return filtered
-
     # Connection
 
     async def connect(self):

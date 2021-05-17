@@ -14,3 +14,6 @@ class EntityId(ValueObject):
             return self.identity == str(other)
 
         return self.identity == other.identity
+
+    def __hash__(self):
+        return hash(self.identity)
