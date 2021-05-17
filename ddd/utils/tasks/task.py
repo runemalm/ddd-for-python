@@ -8,19 +8,28 @@ class Task(object, metaclass=ABCMeta):
     """
     A base class for tasks.
     """
-    def __init__(self, config, deps_mgr, args_str, makes_requests=False):
+    def __init__(
+        self,
+        config,
+        deps_mgr,
+        args_str,
+        makes_requests=False,   # deprecated, (use commands on service instead)
+        uses_service=False
+    ):
         super().__init__()
 
         self.config = config
         self.deps_mgr = deps_mgr
         self.args_str = args_str
         self.makes_requests = makes_requests
+        self.uses_service = uses_service
 
         self._create_args_parser()
         self.add_args(parser=self.parser)
         self._parse_args()
 
         self.client = None
+        self.service = None
 
     # Interface
 
@@ -71,8 +80,27 @@ class Task(object, metaclass=ABCMeta):
             self.client = aiosonic.HTTPClient()
             await self._login()
 
+        # Service
+        if self.uses_service:
+            await self._create_service()
+            await self._register_service()
+            await self._start_service()
+
     # HTTP
 
     @abstractmethod
     async def _login(self):
         pass
+
+    # Application Service
+
+    @abstractmethod
+    async def _create_service(self):
+        pass
+
+    @abstractmethod
+    async def _register_service(self):
+        pass
+
+    async def _start_service(self):
+        await self.service.start()
