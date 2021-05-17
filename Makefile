@@ -8,7 +8,7 @@
 
 HOME := $(shell echo ~)
 ENV := ENV_FILE=env
-ENV_TEST := ENV_FILE=env.test
+ENV_TEST := env.test
 PYTHON := venv/bin/python
 
 ##########################################################################
@@ -42,7 +42,7 @@ clean: ## clean the build
 	find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 
 .PHONY: upload-test
-upload-test: ## upload package to pypitest repository
+upload-test: ## upload package to testpypi repository
 	twine upload --repository testpypi --repository-url https://test.pypi.org/legacy/ dist/*
 
 .PHONY: upload
