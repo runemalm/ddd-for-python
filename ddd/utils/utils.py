@@ -25,6 +25,92 @@ TRUTHY = ["True", "true", "1", 1, True]
 
 # Functions
 
+def read_config():
+    """
+    Read config (from environment variables).
+
+    Returns:
+        dict - the config dict
+    """
+    config = Dict({
+        'env': os.getenv("ENV"),
+        'debug': os.getenv("DEBUG"),
+        'max_concurrent_actions':
+            int(os.getenv("MAX_CONCURRENT_ACTIONS", "10")),
+        'top_level_package_name': os.getenv("TOP_LEVEL_PACKAGE_NAME"),
+        'http': {
+            'debug': os.getenv("HTTP_DEBUG") in TRUTHY,
+            'port': os.getenv("HTTP_PORT"),
+        },
+        'database': {
+            'type': os.getenv("DATABASE_TYPE"),
+            'postgres': {
+                'dsn': os.getenv("POSTGRES_DSN"),
+            },
+        },
+        'auth': {
+            'full_access_token': os.getenv("AUTH_FULL_ACCESS_TOKEN"),
+        },
+        'pubsub': {
+            'domain': {
+                'provider': os.getenv("DOMAIN_PUBSUB_PROVIDER"),
+                'topic': os.getenv("DOMAIN_PUBSUB_TOPIC"),
+                'group': os.getenv("DOMAIN_PUBSUB_GROUP"),
+            },
+            'interchange': {
+                'provider': os.getenv("INTERCHANGE_PUBSUB_PROVIDER"),
+                'topic': os.getenv("INTERCHANGE_PUBSUB_TOPIC"),
+                'group': os.getenv("INTERCHANGE_PUBSUB_GROUP"),
+            },
+            'kafka': {
+                'bootstrap_servers': os.getenv("KAFKA_BOOTSTRAP_SERVERS"),
+            },
+            'azure': {
+                'namespace': os.getenv("AZURE_EVENT_HUBS_NAMESPACE"),
+                'namespace_conn_string':
+                    os.getenv("AZURE_EVENT_HUBS_NAMESPACE_CONN_STRING"),
+                'checkpoint_store_conn_string':
+                    os.getenv("AZURE_EVENT_HUBS_CHECKPOINT_STORE_CONN_STRING"),
+                'blob_container_name':
+                    os.getenv("AZURE_EVENT_HUBS_BLOB_CONTAINER_NAME"),
+            },
+        },
+        'jobs': {
+            'scheduler': {
+                'type': os.getenv("JOBS_SCHEDULER_TYPE"),
+                'dsn': os.getenv("JOBS_SCHEDULER_DSN"),
+            },
+        },
+        'slack': {
+            'token': os.getenv("SLACK_TOKEN"),
+        },
+        'log': {
+            'enabled': True,
+            'slack': {
+                'enabled': os.getenv("LOG_SLACK_ENABLED") in TRUTHY,
+                'errors': {
+                    'channel': os.getenv("LOG_SLACK_CHANNEL_ERRORS"),
+                }
+            },
+            'kibana': {
+                'enabled': os.getenv("LOG_KIBANA_ENABLED") in TRUTHY,
+                'url': os.getenv("LOG_KIBANA_URL"),
+                'username': os.getenv("LOG_KIBANA_USERNAME"),
+                'password': os.getenv("LOG_KIBANA_PASSWORD"),
+            }
+        },
+        'base_url': os.getenv('BASE_URL', 'empty-base-url'),
+        'api': {
+
+        },
+        'tasks': {
+            'username': os.getenv('TASK_USERNAME'),
+            'password': os.getenv('TASK_PASSWORD'),
+        }
+    })
+
+    return config
+
 def load_env_file():
     """
     Load environment variables from env file.

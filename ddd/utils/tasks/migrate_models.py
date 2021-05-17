@@ -14,6 +14,7 @@ class Task(BaseTask):
             deps_mgr=deps_mgr,
             args_str=args_str,
             makes_requests=False,
+            uses_service=False,
         )
 
     def add_args(self, parser):
@@ -132,4 +133,12 @@ class Task(BaseTask):
         ).lstrip('_')
 
     async def _login(self):
+        pass
+
+    # Service
+
+    async def _create_service(self):
+        pass
+
+    async def _register_service(self):
         pass
