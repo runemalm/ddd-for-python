@@ -96,7 +96,7 @@ if __name__ == "__main__":
     # Container
     container = \
         Container(
-            service=service,
+            app_service=service,
             log_service=dep_mgr.get_log_service(),
         )
 
