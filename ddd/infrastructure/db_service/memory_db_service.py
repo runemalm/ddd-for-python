@@ -1,10 +1,12 @@
-from ddd.infrastructure.db_service import DbService
-from ddd.infrastructure.memory.memory_pool import MemoryPool
+from ddd.infrastructure.db_service.db_service import DbService
+from ddd.infrastructure.db_service.memory_pool import MemoryPool
 
 
 class MemoryDbService(DbService):
     """
     A memory db service.
+
+    :param log_service: the log service.
     """
     def __init__(
         self,

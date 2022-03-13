@@ -5,7 +5,9 @@ from ddd.infrastructure.infrastructure_service import InfrastructureService
 
 class DbService(InfrastructureService, metaclass=ABCMeta):
     """
-    A db service base class.
+    The db service base class.
+
+    :param log_service: the log service.
     """
     def __init__(
         self,
@@ -19,9 +21,15 @@ class DbService(InfrastructureService, metaclass=ABCMeta):
         pass
 
     async def start(self):
+        """
+        Starts the db service.
+        """
         self.log_service.info("..starting db service")
         await self._create_conn_pool()
 
     async def stop(self):
+        """
+        Stops the db service.
+        """
         self.log_service.info("..stopping db service")
         await self.conn_pool.close()

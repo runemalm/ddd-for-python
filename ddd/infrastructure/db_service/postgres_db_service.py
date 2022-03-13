@@ -1,14 +1,20 @@
 import asyncio
+import asyncpg
 import json
 
-import asyncpg
-
-from ddd.infrastructure.db_service import DbService
+from ddd.infrastructure.db_service.db_service import DbService
 
 
 class PostgresDbService(DbService):
     """
     A postgres db service.
+
+    :param dsn: the dsn (connection string).
+    :param log_service: the log service.
+    :param min_size: minimum number of connections in the db pool.
+    :type min_size: int, optional
+    :param max_size: maximum number of connections in the db pool.
+    :type max_size: int, optional
     """
     def __init__(
         self,
