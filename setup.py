@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='ddd-for-python',
-    version='0.9.4',
+    version='0.9.5',
     author='David Runemalm, 2021',
     author_email='david.runemalm@gmail.com',
     description=
@@ -15,6 +15,7 @@ setup(
     long_description_content_type="text/markdown",
     url='https://github.com/runemalm/ddd-for-python',
     project_urls={
+        "Documentation": "https://ddd-for-python.readthedocs.io/en/latest/",
         "Bug Tracker": "https://github.com/runemalm/ddd-for-python/issues",
     },
     package_dir={'': '.'},
