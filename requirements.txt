@@ -7,6 +7,7 @@ asyncpg==0.21.0
 azure-eventhub==5.2.0
 azure-eventhub-checkpointstoreblob-aio==1.1.1
 CMRESHandler==1.0.0
+docutils==0.16
 python-dotenv==0.14.0
 sanic==20.9.1
 slacker-log-handler==1.7.1
