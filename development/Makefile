@@ -28,12 +28,12 @@ help:
 ################################################################################
 
 .PHONY: postgres-stop
-postgres-stop:: ##@postgres	stop postgres
+postgres-stop: ## stop postgres
 	@docker container stop ddd-postgres || true
 	@docker container rm ddd-postgres || true
 
 .PHONY: postgres-deploy
-postgres-deploy:: postgres-stop ##@postgres	deploy postgres
+postgres-deploy:: postgres-stop ## deploy postgres
 	@docker run \
 		--restart unless-stopped \
 		--name ddd-postgres \
@@ -48,7 +48,7 @@ postgres-deploy:: postgres-stop ##@postgres	deploy postgres
 			postgres:10 -c 'config_file=/etc/postgresql/postgresql.conf'
 
 .PHONY: postgres-setup
-postgres-setup:: ##@postgres	setup the database (for tests)
+postgres-setup:: ## setup the database (for tests)
 	docker exec -t ddd-postgres psql -U postgres -c <<< echo "create database test;"
 	docker exec -t ddd-postgres psql -U postgres -c <<< echo "create user test with encrypted password '$(POSTGRES_TEST_PASSWORD)';"
 	docker exec -t ddd-postgres psql -U postgres -c <<< echo "grant all privileges on database test to test;"

@@ -7,8 +7,9 @@
 ##########################################################################
 
 HOME := $(shell echo ~)
+PWD := $(shell pwd)
 ENV := ENV_FILE=env
-ENV_TEST := env.test
+ENV_TEST := ENV_FILE=env.test
 PYTHON := venv/bin/python
 
 ##########################################################################

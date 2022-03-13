@@ -5,8 +5,14 @@ from asyncio import Semaphore
 
 class ApplicationService(object):
     """
-    An application service.
-    Extend this to add your own dependencies.
+    The application service base class.
+
+    :param db_service: The db service.
+    :param max_concurrent_actions: Maximum number of
+        actions to allow the application service to run concurrently,
+        defaults to 40. This should be adjusted according to the size of your
+        database's connection pool so that it's not exceeded when there's
+        lots of traffic.
     """
     def __init__(
         self,
@@ -74,7 +80,7 @@ class ApplicationService(object):
 
     async def start(self):
         """
-        Starts the service.
+        Starts the application service.
         """
         self.log_service.info("Starting application service.")
 
@@ -89,7 +95,7 @@ class ApplicationService(object):
 
     async def stop(self):
         """
-        Stops the service.
+        Stops the application service.
         """
         self.log_service.info("Stopping application service.")
 

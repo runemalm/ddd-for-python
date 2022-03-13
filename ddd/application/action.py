@@ -8,10 +8,10 @@ from ddd.domain.exceptions import DomainException
 
 def action(func):
     """
-    A decorator for the application service's "action" methods.
+    A decorator for the functions of the application service.
 
-    Calls the wrapped method inside a transaction. Then saves any
-    published events to the database.
+    Makes sure that the wrapped method is called inside a
+    transaction. It then saves any published events to the database.
 
     If transaction is committed (not rolled back), the events are
     actually published and then deleted from the database.
