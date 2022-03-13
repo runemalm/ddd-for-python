@@ -43,8 +43,28 @@ clean: ## clean the build
 
 .PHONY: upload-test
 upload-test: ## upload package to testpypi repository
-	twine upload --repository testpypi --repository-url https://test.pypi.org/legacy/ dist/*
+	twine upload --repository testpypi --skip-existing --repository-url https://test.pypi.org/legacy/ dist/*
 
 .PHONY: upload
 upload: ## upload package to pypi repository
 	twine upload --skip-existing dist/*
+
+.PHONY: sphinx-quickstart
+sphinx-quickstart: ## run the sphinx quickstart
+	docker run -it --rm -v $(PWD)/docs:/docs sphinxdoc/sphinx sphinx-quickstart
+
+.PHONY: sphinx-html
+sphinx-html: ## build the sphinx html
+	make -C docs html
+
+.PHONY: sphinx-rebuild
+sphinx-rebuild: ## re-build the sphinx docs
+	make -C docs clean && make -C docs html
+
+.PHONY: sphinx-autobuild
+sphinx-autobuild: ## activate autobuild of docs
+	sphinx-autobuild docs docs/_build/html --watch ddd
+
+.PHONY: install-requirements
+install-requirements: ## install requirements
+	pip install -r requirements.txt
