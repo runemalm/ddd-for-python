@@ -8,7 +8,7 @@ from ddd.utils.utils import get_for_compare
 
 class Event(object, metaclass=ABCMeta):
     """
-    An event base class.
+    The event base class.
     """
     def __init__(self, name, version="1", date=None, sender=None, corr_ids=None):
         date = date if date is not None else arrow.utcnow()
@@ -48,7 +48,9 @@ class Event(object, metaclass=ABCMeta):
     @abstractmethod
     def get_serialized_payload(self):
         """
-        Implemented by subclasses to provide the payload.
+        Get the serialized payload (the event data).
+
+        :rtype: dict
         """
         pass
 
