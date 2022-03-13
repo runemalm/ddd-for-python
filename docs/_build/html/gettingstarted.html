@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; ddd-for-python 0.9.5 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Version history" href="versionhistory.html" />
+    <link rel="prev" title="ddd-for-python" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> ddd-for-python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#example-application">Example application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#building-blocks">Building Blocks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#config">Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#env-files">Env files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependency-manager">Dependency manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-py">main.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#container">Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#makefile">Makefile</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#scheduling">Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#migrations">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#development-process">Development Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="versionhistory.html">Version history</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Contributing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">API reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ddd-for-python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/gettingstarted.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<p>Install using <a class="reference external" href="http://pypi.python.org/pypi/pip/">pip</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install ddd-for-python
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-application">
+<h1>Example application<a class="headerlink" href="#example-application" title="Permalink to this headline"></a></h1>
+<p>We have included an example application in the source distribution, so that you can see a full example of a bounded context implementing using this framework.</p>
+<p>You can find this <a class="reference external" href="https://github.com/runemalm/ddd-for-python/tree/master/examples/?at=master">webshop application</a> in the github repository of this project.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The example application is incomplete and will be finished before the release of v1.0.0.</p>
+</div>
+</div>
+<div class="section" id="building-blocks">
+<h1>Building Blocks<a class="headerlink" href="#building-blocks" title="Permalink to this headline"></a></h1>
+<p>These are the building blocks of the framework:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#config"><span class="std std-ref">Config</span></a></p></li>
+<li><p><a class="reference internal" href="#env-files"><span class="std std-ref">Env files</span></a></p></li>
+<li><p><a class="reference internal" href="#dependency-manager"><span class="std std-ref">Dependency manager</span></a></p></li>
+<li><p><a class="reference internal" href="#main-py"><span class="std std-ref">main.py</span></a></p></li>
+<li><p><a class="reference internal" href="#container"><span class="std std-ref">Container</span></a></p></li>
+<li><p><a class="reference internal" href="#makefile"><span class="std std-ref">Makefile</span></a></p></li>
+</ul>
+<p>The <a class="reference internal" href="#config"><span class="std std-ref">Config</span></a> object will be accessible from anywhere in your code. This object will contain all the configuration settings of your bounded context. Use the <a class="reference internal" href="#env-files"><span class="std std-ref">Env files</span></a> to define these settings for each of the environments your context will run in. These environments will typically be local, dev, staging and production, or any subset of them. By utilizing <a class="reference internal" href="#env-files"><span class="std std-ref">Env files</span></a>, you can avoid the “configuration hell” where settings are scattered across different locations, and/or hard-coded into the application code, making it impossible to configure the context for different environments without a new code release.</p>
+<p>The config object will be registered with the <a class="reference internal" href="#dependency-manager"><span class="std std-ref">Dependency manager</span></a>. This is how you will be able to access it from all over the code. The config objects is not the only dependency you will register with the <a class="reference internal" href="#dependency-manager"><span class="std std-ref">Dependency manager</span></a>. You can register any depdency that you want to be able to reference from anywhere in the code. The dependency manager brings the inversion of control principle and the dependency injection pattern to the framework.</p>
+<p>The creation of dependencies are done in the <a class="reference internal" href="#main-py"><span class="std std-ref">main.py</span></a> file. Here they are also registered with the Dependency Manager. The final step in main.py is to instantiate a <a class="reference internal" href="#container"><span class="std std-ref">Container</span></a> object and schedule it to run on the python event loop.</p>
+<p>The <a class="reference internal" href="#makefile"><span class="std std-ref">Makefile</span></a> is used to automate your daily tasks so that you can run them easily and quickly from the command line. These tasks are e.g. building, running the unit tests, running your deployment pipeline locally, etc. You can add your own makefile targets to this file as you wish, but there are some standard tasks that follows with the project template setup. Check out the <a class="reference external" href="https://github.com/runemalm/ddd-for-python/tree/master/examples/webshop/shipping/Makefile?at=master">shipping makefile example</a> for inspiration.</p>
+<div class="section" id="config">
+<h2>Config<a class="headerlink" href="#config" title="Permalink to this headline"></a></h2>
+<p>The <a class="reference internal" href="modules/application/config.html#ddd.application.config.Config" title="ddd.application.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> object holds all the configuration settings of your bounded context .</p>
+<p>If you don’t have custom settings added to your env file, you can simply instantiate a config object from the base <a class="reference internal" href="modules/application/config.html#ddd.application.config.Config" title="ddd.application.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> class. If you do have custom settings however, which you typically do, you need to subclass the base <a class="reference internal" href="modules/application/config.html#ddd.application.config.Config" title="ddd.application.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> and override a couple of methods to instruct <a class="reference internal" href="modules/application/config.html#ddd.application.config.Config" title="ddd.application.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> where to find the new settings in the env file and where in the <a class="reference internal" href="modules/application/config.html#ddd.application.config.Config" title="ddd.application.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> object to store them.</p>
+<p>This is an example of how you subclass the base Config class for the shipping context:</p>
+<p>Start by creating <code class="docutils literal notranslate"><span class="pre">&lt;your_domain&gt;.application.config</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="o">&lt;</span><span class="n">your_product</span><span class="o">&gt;/&lt;</span><span class="n">your_domain</span><span class="o">&gt;/</span><span class="n">application</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Then open <code class="docutils literal notranslate"><span class="pre">config.py</span></code> in your favourite text editor:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">subl</span> <span class="o">&lt;</span><span class="n">your_product</span><span class="o">&gt;/&lt;</span><span class="n">your_domain</span><span class="o">&gt;/</span><span class="n">application</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Add the class declaration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ddd.application.config</span> <span class="kn">import</span> <span class="n">Config</span> <span class="k">as</span> <span class="n">BaseConfig</span>
+
+
+<span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">BaseConfig</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Then override <a class="reference internal" href="modules/application/config.html#ddd.application.config.Config._declare_settings" title="ddd.application.config.Config._declare_settings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_declare_settings()</span></code></a> to declare the new settings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_declare_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">my_custom_setting</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_declare_settings</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Override <a class="reference internal" href="modules/application/config.html#ddd.application.config.Config._read_config" title="ddd.application.config.Config._read_config"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_read_config()</span></code></a> to define which environment variables that contains the new settings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_read_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">my_custom_setting</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;MY_CUSTOM_SETTING&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="modules/application/config.html#ddd.application.config.Config" title="ddd.application.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> knows how to find the env file and read it’s settings as long as it’s placed in the root of the project and named “env”. If you want another name for your env file, you must pass the path using the <code class="docutils literal notranslate"><span class="pre">env_file_path</span></code> argument of the constructor.</p>
+</div>
+<p>Now you can reference your custom settings from the config object like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+
+<span class="n">my_custom_setting</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">my_custom_setting</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;My custom setting:&quot;</span><span class="p">,</span> <span class="n">my_custom_setting</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="env-files">
+<h2>Env files<a class="headerlink" href="#env-files" title="Permalink to this headline"></a></h2>
+<p>An <a class="reference external" href="https://12factor.net/config">Env file</a> is where you put the configuration for a specific environment.</p>
+<p>You will e.g. have the following env files, one each for all of your environments:</p>
+<ul class="simple">
+<li><p>env.local.pycharm</p></li>
+<li><p>env.local.minikube</p></li>
+<li><p>env.local.test</p></li>
+<li><p>env.pipeline.test</p></li>
+<li><p>env.staging</p></li>
+<li><p>env (production)</p></li>
+</ul>
+<p>Env files are part of <a class="reference external" href="https://12factor.net">The Twelve-Factor App</a> pattern.</p>
+</div>
+<div class="section" id="dependency-manager">
+<h2>Dependency manager<a class="headerlink" href="#dependency-manager" title="Permalink to this headline"></a></h2>
+<p>The dependency manger applies the dependency injection pattern and inversion of control (IoC) principle.</p>
+<p>This pattern is useful when you want to use mock- repositories and third-party api adapters in your tests, while you use the real (mysql, http, etc.) dependencies in your production environment.</p>
+<p>To support a new dependency in the manager, you need to subclass the base Dependency Manager and add the private variable that will hold the new dependency, as well the getters and setters to register and retrieve it.</p>
+</div>
+<div class="section" id="main-py">
+<h2>main.py<a class="headerlink" href="#main-py" title="Permalink to this headline"></a></h2>
+<p>As previously mentioned, the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file can be seen as the starting point for your code that will execute in the container and implement the bounded context.</p>
+<p>That means this file will instantiate all the building blocks that comprises the context and then schedule it to run on the event loop.</p>
+<p>This is how the <a class="reference external" href="https://github.com/runemalm/ddd-for-python/tree/master/examples/webshop/shipping/src/main.py?at=master">shipping example main.py</a> file looks like::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ddd.application.config</span> <span class="kn">import</span> <span class="n">Config</span>
+<span class="kn">from</span> <span class="nn">ddd.infrastructure.container</span> <span class="kn">import</span> <span class="n">Container</span>
+
+<span class="kn">from</span> <span class="nn">shipping.utils.dep_mgr</span> <span class="kn">import</span> <span class="n">DependencyManager</span>
+<span class="kn">from</span> <span class="nn">shipping.application.shipping_application_service</span> <span class="kn">import</span> \
+<span class="n">ShippingApplicationService</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the container entry point.</span>
+<span class="sd">    Creates the app and runs it in the container.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Config</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+
+    <span class="c1"># Dependency manager</span>
+    <span class="n">dep_mgr</span> <span class="o">=</span> \
+        <span class="n">DependencyManager</span><span class="p">(</span>
+            <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Application service</span>
+    <span class="n">service</span> <span class="o">=</span> \
+        <span class="n">ShippingApplicationService</span><span class="p">(</span>
+            <span class="n">customer_repository</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_customer_repository</span><span class="p">(),</span>
+            <span class="n">db_service</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_db_service</span><span class="p">(),</span>
+            <span class="n">domain_adapter</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_domain_adapter</span><span class="p">(),</span>
+            <span class="n">domain_publisher</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_domain_publisher</span><span class="p">(),</span>
+            <span class="n">event_repository</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_event_repository</span><span class="p">(),</span>
+            <span class="n">interchange_adapter</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_interchange_adapter</span><span class="p">(),</span>
+            <span class="n">interchange_publisher</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_interchange_publisher</span><span class="p">(),</span>
+            <span class="n">job_adapter</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_job_adapter</span><span class="p">(),</span>
+            <span class="n">job_service</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_job_service</span><span class="p">(),</span>
+            <span class="n">log_service</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_log_service</span><span class="p">(),</span>
+            <span class="n">scheduler_adapter</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_scheduler_adapter</span><span class="p">(),</span>
+            <span class="n">shipment_repository</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_shipment_repository</span><span class="p">(),</span>
+            <span class="n">max_concurrent_actions</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">max_concurrent_actions</span><span class="p">,</span>
+            <span class="n">loop</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">instance</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># ..register</span>
+    <span class="n">dep_mgr</span><span class="o">.</span><span class="n">set_service</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
+
+    <span class="c1"># Container</span>
+    <span class="n">container</span> <span class="o">=</span> \
+        <span class="n">Container</span><span class="p">(</span>
+            <span class="n">app_service</span><span class="o">=</span><span class="n">service</span><span class="p">,</span>
+            <span class="n">log_service</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_log_service</span><span class="p">(),</span>
+        <span class="p">)</span>
+
+    <span class="c1"># ..run</span>
+    <span class="n">loop</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">instance</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">run</span><span class="p">())</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Container will listen to UNIX stop signals (e.g. by a user pressing Ctrl+C in the terminal, or by the Docker Engine stopping the container, for any reason). Upon receiving such a stop signal, it gracefully shuts down the context by first calling <a class="reference internal" href="modules/application/application_service.html#ddd.application.application_service.ApplicationService.stop" title="ddd.application.application_service.ApplicationService.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code></a> on the ApplicationService, which in turns calls <code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code> on all the secondary- and primary adapters (in that order). The Container task is then taken off the event loop and the docker container can be destroyed by the orchestrator.</p>
+</div>
+</div>
+<div class="section" id="container">
+<h2>Container<a class="headerlink" href="#container" title="Permalink to this headline"></a></h2>
+<p>The container abstraction maps directly to the docker/kubernetes container concept. It doesn’t do much more than function as a holder of the context’s application service and delegates the stop operations upon receiving unix stop signals when the container is instructed to stop by whatever container orchestrator is operating it.</p>
+</div>
+<div class="section" id="makefile">
+<h2>Makefile<a class="headerlink" href="#makefile" title="Permalink to this headline"></a></h2>
+<p>This part of the documentation will be added before the release of v1.0.0.</p>
+</div>
+</div>
+<div class="section" id="scheduling">
+<h1>Scheduling<a class="headerlink" href="#scheduling" title="Permalink to this headline"></a></h1>
+<p>This part of the documentation will be added before the release of v1.0.0.</p>
+</div>
+<div class="section" id="migrations">
+<h1>Migrations<a class="headerlink" href="#migrations" title="Permalink to this headline"></a></h1>
+<p>This part of the documentation will be added before the release of v1.0.0.</p>
+</div>
+<div class="section" id="testing">
+<h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h1>
+<p>This part of the documentation will be added before the release of v1.0.0.</p>
+</div>
+<div class="section" id="development-process">
+<h1>Development Process<a class="headerlink" href="#development-process" title="Permalink to this headline"></a></h1>
+<p>You can of course develop any way you want, however, this is the process that ddd-for-python (DDD) is especially designed to work well with:</p>
+<ol class="arabic">
+<li><dl>
+<dt>Clone the repository:</dt><dd><ul>
+<li><p>Run in terminal:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git clone https://github.com/runemalm/ddd-for-python.git &lt;cloned_repo_path&gt;
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Create your project from the template:</dt><dd><ul>
+<li><p>Run in terminal:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> &lt;cloned_repo_path&gt;
+<span class="gp">$ </span>cp templates/project &lt;your_projects_path&gt;
+<span class="gp">$ </span><span class="nb">cd</span> &lt;your_projects_path&gt;
+<span class="gp">$ </span>mv project &lt;your_product&gt;  <span class="c1"># Renames the &#39;project&#39; folder</span>
+<span class="gp">$ </span><span class="nb">cd</span> &lt;your_product&gt;
+<span class="gp">$ </span>mv domain &lt;your_domain&gt;    <span class="c1"># Renames the &#39;domain&#39; folder</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Create a virtual environment</dt><dd><ul>
+<li><p>Run in terminal:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> &lt;your_projects_path&gt;/&lt;your_product&gt;/&lt;your_domain&gt;
+<span class="gp">$ </span>make create-venv
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Implement your domain model:</dt><dd><ul class="simple">
+<li><p>Create the application service</p></li>
+<li><p>Create the actions</p></li>
+<li><p>Create the aggregates, entities and value objects</p></li>
+<li><p>Create the repositories</p></li>
+<li><p>Create the primary adapters (e.g. http adapter and event listeners)</p></li>
+<li><p>Create the secondary adapters for your external APIs</p></li>
+<li><p>Write the tests</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Deploy the first version:</dt><dd><ul class="simple">
+<li><p>When your tests pass and you are ready for a first release, deploy your new bounded context using kubernetes, docker or any other orchestrator.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Iterate on features:</dt><dd><ul class="simple">
+<li><p>Continuously iterate on your domain model and product features from here on.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We rely on the community to come up with more in-depth guides on how to develop with the framework, e.g. how to setup PyCharm or other IDEs and editors.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have a guide you think should be included in this documentation, please submit it to us.</p>
+</div>
+</div>
+<div class="section" id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline"></a></h1>
+<p>If you suspect something in the ddd package isn’t as expected, it will be helpful to increase the logging level of the
+<code class="docutils literal notranslate"><span class="pre">ddd-for-python</span></code> logger to the <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> level.</p>
+<p>If you do not yet have logging enabled in the first place, you can do this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">import logging</span>
+
+<span class="go">logging.basicConfig()</span>
+<span class="go">logging.getLogger(&#39;ddd-for-python&#39;).setLevel(logging.DEBUG)</span>
+</pre></div>
+</div>
+<p>This should provide lots of useful information about what’s going on inside the ddd core.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="ddd-for-python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="versionhistory.html" class="btn btn-neutral float-right" title="Version history" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, David Runemalm.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

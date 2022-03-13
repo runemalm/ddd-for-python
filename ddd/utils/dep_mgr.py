@@ -13,8 +13,10 @@ from ddd.domain.kafka.kafka_event_publisher import KafkaEventPublisher
 from ddd.domain.memory.memory_event_publisher import MemoryEventPublisher
 from ddd.infrastructure.job_service import JobService
 from ddd.infrastructure.log_service import LogService
-from ddd.infrastructure.memory.memory_db_service import MemoryDbService
-from ddd.infrastructure.postgres.postgres_db_service import PostgresDbService
+from ddd.infrastructure.db_service.memory_db_service import MemoryDbService
+from ddd.infrastructure.db_service.memory_postgres_db_service import \
+    MemoryPostgresDbService
+from ddd.infrastructure.db_service.postgres_db_service import PostgresDbService
 from ddd.repositories.memory.memory_dummy_repository import \
     MemoryDummyRepository
 from ddd.repositories.memory.memory_event_repository import \
@@ -58,6 +60,13 @@ class DependencyManager(object, metaclass=ABCMeta):
                 self.db_service = \
                     MemoryDbService(
                         log_service=self.get_log_service(),
+                    )
+            elif self.config.database.type == "mem_postgres":
+                self.db_service = \
+                    MemoryPostgresDbService(
+                        log_service=self.get_log_service(),
+                        min_size=20,
+                        max_size=20,
                     )
             elif self.config.database.type == "postgres":
                 self.db_service = \

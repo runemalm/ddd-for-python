@@ -1,14 +1,16 @@
-## DDD for Python  
+## ddd-for-python
 
 This is a framework for developing apps based on domain-driven design.
- The design is inspired by Vaughn Vernon's reference implementation of DDD in Java.
- A little bit of inspiration also comes from django.
+
+The design is inspired by Vaughn Vernon's reference implementation of DDD in Java.
+
+A little bit of inspiration also comes from django.
 
 ### Purpose:
 
 The goal of this project is to provide a complete framework for implementing DDD bounded contexts in Python.
 
-Full documentation will be available in version 1.0.0. There's a code example for a 'shipping' context in the 'examples' folder you can look at meanwhile.
+Read the user guide in the [documentation](https://ddd-for-python.readthedocs.io/en/latest/) to get started. You can also look at the [example code](https://github.com/runemalm/ddd-for-python/tree/develop/examples/webshop/shipping) of the 'shipping' context.
 
 Star and/or follow the project to receive notifications when version 1.0.0 is released.
 
@@ -110,25 +112,36 @@ For the full code, see: "examples/webshop/shipping".
   
 ### Documentation:
   
-The documentation is coming shortly.
+You can find the latest [documentation](https://ddd-for-python.readthedocs.io/en/latest/) at readthedocs.
+
+### Contribution:
+  
+If you want to contribute to the code base, create a pull request on the develop branch.
   
 ### Release Notes:
 
+**0.9.5** - 2022-03-13
+- Added [documentation](https://ddd-for-python.readthedocs.io/en/latest/).
+- Moved db_service related classes.
+- Moved event related classes.
+- Added MemoryPostgresDbService to be able to run tests against an in-memory postgres database.
+- Fixed bug: container kwarg in example main.py (thanks euri10).
+
 **0.9.4** - 2021-05-17
-- Add 'context' to log service's log messages.
-- Move record filtering methods to base repository class.
-- Add 'uses_service' to Task class. Deprecate 'makes_requests'.
+- Added 'context' to log service's log messages.
+- Moved record filtering methods to base repository class.
+- Added 'uses_service' to Task class. Deprecate 'makes_requests'.
 
 **0.9.3** - 2021-03-27
-- Search env file from cwd by default in tests, (when no path specified).
-- Refactor Task class to make it more simple.
-- Refactor the configuration solution by adding a Config class.
-- Add example code for 'shipping' context of a webshop application.
-- Add get_all_jobs() and get_job_count() to scheduler adapter & service.
-- Add missing call to _migrate() in a couple of Repository class functions.
+- Searching env file from cwd by default in tests, (when no path specified).
+- Refactored Task class to make it more simple.
+- Refactored the configuration solution by adding a Config class.
+- Added example code for 'shipping' context of a webshop application.
+- Added get_all_jobs() and get_job_count() to scheduler adapter & service.
+- Added missing call to _migrate() in a couple of Repository class functions.
 
 **0.9.2** - 2021-03-15
-- Fix a bug where env file wasn't loaded in certain circumstances.
+- Fixed bug: Env file wasn't loaded in certain circumstances.
 
 **0.9.1** - 2021-03-14
-- First release.
+- Initial commit.

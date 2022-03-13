@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ddd-for-python &mdash; ddd-for-python 0.9.5 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="gettingstarted.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> ddd-for-python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#example-application">Example application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#building-blocks">Building Blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#scheduling">Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#migrations">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#testing">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#development-process">Development Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="versionhistory.html">Version history</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Contribution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">API reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">ddd-for-python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>ddd-for-python</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="ddd-for-python">
+<h1>ddd-for-python<a class="headerlink" href="#ddd-for-python" title="Permalink to this headline"></a></h1>
+<p>Welcome to the ddd-for-python framework.</p>
+<p>This framework is used to do DDD with python. Below is an example of a bounded context implemented with ddd-for-python.</p>
+<p>Check out the <a class="reference internal" href="gettingstarted.html"><span class="doc">user guide</span></a> to get started building your own contexts.</p>
+</div>
+<div class="section" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ddd.application.config</span> <span class="kn">import</span> <span class="n">Config</span>
+<span class="kn">from</span> <span class="nn">ddd.infrastructure.container</span> <span class="kn">import</span> <span class="n">Container</span>
+
+<span class="kn">from</span> <span class="nn">shipping.utils.dep_mgr</span> <span class="kn">import</span> <span class="n">DependencyManager</span>
+<span class="kn">from</span> <span class="nn">shipping.application.shipping_application_service</span> <span class="kn">import</span> \
+<span class="n">ShippingApplicationService</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="c1"># Config</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+
+    <span class="c1"># Dependency manager</span>
+    <span class="n">dep_mgr</span> <span class="o">=</span> \
+        <span class="n">DependencyManager</span><span class="p">(</span>
+            <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Application service</span>
+    <span class="n">service</span> <span class="o">=</span> \
+        <span class="n">ShippingApplicationService</span><span class="p">(</span>
+            <span class="n">customer_repository</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_customer_repository</span><span class="p">(),</span>
+            <span class="n">db_service</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_db_service</span><span class="p">(),</span>
+            <span class="n">domain_adapter</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_domain_adapter</span><span class="p">(),</span>
+            <span class="n">domain_publisher</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_domain_publisher</span><span class="p">(),</span>
+            <span class="n">event_repository</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_event_repository</span><span class="p">(),</span>
+            <span class="n">interchange_adapter</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_interchange_adapter</span><span class="p">(),</span>
+            <span class="n">interchange_publisher</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_interchange_publisher</span><span class="p">(),</span>
+            <span class="n">job_adapter</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_job_adapter</span><span class="p">(),</span>
+            <span class="n">job_service</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_job_service</span><span class="p">(),</span>
+            <span class="n">log_service</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_log_service</span><span class="p">(),</span>
+            <span class="n">scheduler_adapter</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_scheduler_adapter</span><span class="p">(),</span>
+            <span class="n">shipment_repository</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_shipment_repository</span><span class="p">(),</span>
+            <span class="n">max_concurrent_actions</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">max_concurrent_actions</span><span class="p">,</span>
+            <span class="n">loop</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">instance</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># ..register</span>
+    <span class="n">dep_mgr</span><span class="o">.</span><span class="n">set_service</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
+
+    <span class="c1"># Container</span>
+    <span class="n">container</span> <span class="o">=</span> \
+        <span class="n">Container</span><span class="p">(</span>
+            <span class="n">app_service</span><span class="o">=</span><span class="n">service</span><span class="p">,</span>
+            <span class="n">log_service</span><span class="o">=</span><span class="n">dep_mgr</span><span class="o">.</span><span class="n">get_log_service</span><span class="p">(),</span>
+        <span class="p">)</span>
+
+    <span class="c1"># ..run</span>
+    <span class="n">loop</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">instance</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">run</span><span class="p">())</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#example-application">Example application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#building-blocks">Building Blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#scheduling">Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#migrations">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#testing">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#development-process">Development Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="versionhistory.html">Version history</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Contribution</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">API reference</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gettingstarted.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, David Runemalm.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,8 +1,6 @@
 import asyncio
 import uvloop
 
-from unittest.mock import AsyncMock
-
 from abc import ABCMeta, abstractmethod
 
 from ddd.utils.dep_mgr import DependencyManager

@@ -4,12 +4,6 @@ from ddd.tests.base_test_case import BaseTestCase
 
 from ddd.adapters.event.memory.memory_event_adapter import MemoryEventAdapter
 
-from webshop.adapters.listeners.domain.customer_account_created_listener \
-    import CustomerAccountCreatedListener
-from webshop.application.webshop_application_service import \
-    WebshopApplicationService
-from webshop.domain.commands import SendWelcomeEmailCommand
-
 
 class TestEventAdapter(BaseTestCase):
 
@@ -18,6 +12,7 @@ class TestEventAdapter(BaseTestCase):
 
         self.adapter = MemoryEventAdapter()
 
+    @skip
     async def test_assigns_service_to_listeners_when_setting_service(
         self,
     ):

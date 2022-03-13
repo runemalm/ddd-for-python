@@ -1,7 +1,9 @@
 from ddd.tests.dummy_action_test_case import DummyActionTestCase
 
+from ddd.infrastructure.db_service.memory_postgres_db_service import \
+    MemoryPostgresDbService
+
 from ddd.domain.dummy.dummy import Dummy
-from ddd.infrastructure.postgres.postgres_db_service import PostgresDbService
 from ddd.repositories.postgres.postgres_dummy_repository import \
     PostgresDummyRepository
 
@@ -11,8 +13,7 @@ class TestPostgresRepository(DummyActionTestCase):
     async def asyncSetUp(self):
         await super().asyncSetUp()
 
-        self.db_service = PostgresDbService(
-            dsn=self.config.database.postgres.dsn,
+        self.db_service = MemoryPostgresDbService(
             log_service=self.deps.get_log_service(),
             min_size=20,
             max_size=20,
